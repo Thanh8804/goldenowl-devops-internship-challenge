@@ -8,7 +8,7 @@ describe('Test Endpoints', () => {
         expect(response.status).toBe(200)
         expect(response.body).toHaveProperty(
             'message',
-            'Welcome warriors to Golden Owl!'
+            'Hi Golden Owl!'
         )
         expect(response.header['content-type']).toMatch(/json/)
     })
