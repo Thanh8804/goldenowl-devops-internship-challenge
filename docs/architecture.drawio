@@ -1,0 +1,189 @@
+<mxfile host="app.diagrams.net" agent="claude" pages="2">
+  <diagram id="current-arch" name="Current Architecture">
+    <mxGraphModel dx="3048" dy="1862" grid="1" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="780" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="awsCloud" parent="1" style="outlineConnect=0;html=1;whiteSpace=wrap;fontSize=14;fontStyle=1;container=0;pointerEvents=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#b46504;fillColor=#fad7ac;verticalAlign=top;align=left;spacingLeft=30;dashed=0;" value="AWS Cloud (us-east-1)" vertex="1">
+          <mxGeometry height="780" width="640" x="500" y="-30" as="geometry" />
+        </mxCell>
+        <mxCell id="vpcBox" parent="1" style="outlineConnect=0;html=1;whiteSpace=wrap;fontSize=12;fontStyle=1;container=0;pointerEvents=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#9673a6;fillColor=#e1d5e7;verticalAlign=top;align=left;spacingLeft=30;dashed=0;" value="Default VPC" vertex="1">
+          <mxGeometry height="510" width="320" x="790" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2Box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=12;fillColor=#FFE6CC;strokeColor=#D79B00;" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;EC2&amp;nbsp;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="170" width="260" x="820" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="dockerC" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Docker container&lt;br&gt;goldenowl-app&lt;br&gt;Port Mapping&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp;80 → 3000&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="190" x="850" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="sgNote" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE7F6;strokeColor=#8C4FFF;fontSize=11;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Security Group — inbound 22 / 80 / 443&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="260" x="820" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="dev" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=12;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Developer&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="150" x="-230" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#24292E;strokeColor=none;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;GitHub Repository&lt;br&gt;feature/** &amp;amp; master branch&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="180" x="10" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ciJob" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2088FF;strokeColor=none;fontColor=#FFFFFF;fontSize=12;" value="&lt;h3&gt;&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 17px;&quot;&gt;CI Workflow&lt;/font&gt;&lt;/h3&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(255, 255, 255), rgb(18, 18, 18));&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot; face=&quot;Tahoma&quot;&gt;ESLint&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 17px;&quot; face=&quot;Tahoma&quot;&gt;Jest&amp;nbsp;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(255, 255, 255), rgb(18, 18, 18));&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot; face=&quot;Tahoma&quot;&gt;Hadolint&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(255, 255, 255), rgb(18, 18, 18));&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot; face=&quot;Tahoma&quot;&gt;npm audit&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 17px;&quot; face=&quot;Tahoma&quot;&gt;Trivy FS scan&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="290" x="-45" y="-40" as="geometry" />
+        </mxCell>
+        <mxCell id="dqwIH7hywDqeaSNv221x-8" edge="1" parent="1" source="cdJob" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="ec2Box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dqwIH7hywDqeaSNv221x-9" connectable="0" parent="dqwIH7hywDqeaSNv221x-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="SSH Deployment" vertex="1">
+          <mxGeometry relative="1" x="-0.139" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdJob" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2088FF;strokeColor=none;fontColor=#FFFFFF;fontSize=12;" value="&lt;h2&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;CD Workflow&lt;/font&gt;&lt;/h2&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Terraform apply → Docker build&lt;br&gt;→ Trivy image scan → push&lt;br&gt;→ SSH deploy&lt;/font&gt;" vertex="1">
+          <mxGeometry height="140" width="280" x="-40" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="iam" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;IAM Role&lt;br&gt;EC2-CONNECT-ECR&lt;br&gt;(ECR read-only)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="70" x="630" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="endUser" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=12;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;End User&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="190" x="-230" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="dev" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" target="repo" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;git push&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" x="0.0159" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="repo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" target="ciJob" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;push feature/** &amp;amp; PRs&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="repo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" target="cdJob" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;push to master&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="cdJob" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="dqwIH7hywDqeaSNv221x-3" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Terraform State&amp;nbsp;&lt;/font&gt;&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp;(Read / Write)&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="500" />
+              <mxPoint x="310" y="99" />
+            </Array>
+            <mxPoint x="575" y="105" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="ec2Box" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;dashed=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="dqwIH7hywDqeaSNv221x-4" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Pull Image from&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Amazon ECR&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b style=&quot;&quot;&gt;(auth via IAM role)&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="iam" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;dashed=1;" target="ec2Box" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;instance profile&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="endUser" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" target="dockerC" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;HTTP&amp;nbsp;&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dqwIH7hywDqeaSNv221x-3" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Amazon S3&lt;br&gt;Terraform remote state&lt;/font&gt;" vertex="1">
+          <mxGeometry height="78" width="78" x="536" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dqwIH7hywDqeaSNv221x-4" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecr;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Amazon ECR&lt;br&gt;goldenowl-app&lt;br&gt;(tag = commit SHA)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="78" width="78" x="536" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="dqwIH7hywDqeaSNv221x-5" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ec2;fillColor=#F58534;gradientColor=none;" value="" vertex="1">
+          <mxGeometry height="56" width="50" x="1020" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="dqwIH7hywDqeaSNv221x-6" edge="1" parent="1" source="cdJob" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;curved=0;" target="dqwIH7hywDqeaSNv221x-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dqwIH7hywDqeaSNv221x-7" connectable="0" parent="dqwIH7hywDqeaSNv221x-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Push Docker Image&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.2601" y="-2" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="future-arch" name="Future Architecture (ALB + Auto Scaling)">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="780" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- AWS Cloud -->
+        <mxCell id="fAws" value="AWS Cloud (us-east-1)" style="outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=14;fontStyle=1;container=0;pointerEvents=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="920" height="700" as="geometry" />
+        </mxCell>
+        <!-- VPC -->
+        <mxCell id="fVpc" value="VPC — two availability zones" style="outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=1;container=0;pointerEvents=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#8C4FFF;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="110" width="600" height="590" as="geometry" />
+        </mxCell>
+        <!-- ALB -->
+        <mxCell id="fAlb" value="Application Load Balancer&#xa;HTTP :80 / HTTPS :443 (ACM)&#xa;Target group — health check GET /" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_load_balancing;" vertex="1" parent="1">
+          <mxGeometry x="365" y="350" width="70" height="70" as="geometry" />
+        </mxCell>
+        <!-- ASG -->
+        <mxCell id="fAsg" value="Auto Scaling Group — min 2 / max 4&#xa;(launch template + user_data)" style="outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=1;container=0;pointerEvents=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_auto_scaling_group;grStroke=1;strokeColor=#ED7100;fillColor=none;verticalAlign=top;align=center;fontColor=#ED7100;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="160" width="280" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="fAzA" value="AZ us-east-1a" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;verticalAlign=top;fontSize=11;fillColor=#F5F5F5;strokeColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="580" y="210" width="240" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="fEc2a" value="EC2 + Docker&#xa;goldenowl-app" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="250" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fAzB" value="AZ us-east-1b" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;verticalAlign=top;fontSize=11;fillColor=#F5F5F5;strokeColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="580" y="420" width="240" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="fEc2b" value="EC2 + Docker&#xa;goldenowl-app" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="460" width="180" height="90" as="geometry" />
+        </mxCell>
+        <!-- Right column services -->
+        <mxCell id="fEcr" value="Amazon ECR&#xa;goldenowl-app images" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_container_registry;" vertex="1" parent="1">
+          <mxGeometry x="990" y="150" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="fSsm" value="SSM Parameter Store&#xa;/goldenowl/image-tag&#xa;(current deployed SHA)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.systems_manager;" vertex="1" parent="1">
+          <mxGeometry x="990" y="300" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="fCw" value="CloudWatch alarm&#xa;CPU &gt; 70%" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" vertex="1" parent="1">
+          <mxGeometry x="990" y="450" width="70" height="70" as="geometry" />
+        </mxCell>
+        <!-- Left column -->
+        <mxCell id="fUsers" value="Users" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="380" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fGha" value="GitHub Actions CD&#xa;1. push image :sha&#xa;2. update SSM tag&#xa;3. start instance refresh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2088FF;strokeColor=none;fontColor=#FFFFFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="180" height="100" as="geometry" />
+        </mxCell>
+        <!-- Edges -->
+        <mxCell id="fe1" value="HTTP / HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" edge="1" parent="1" source="fUsers" target="fAlb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe2" value="route to healthy targets" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" edge="1" parent="1" source="fAlb" target="fEc2a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" edge="1" parent="1" source="fAlb" target="fEc2b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe4" value="pull image on boot" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="fEc2a" target="fEcr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe5" value="read tag (user_data)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="fEc2b" target="fSsm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe6" value="scale out / in" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" edge="1" parent="1" source="fCw" target="fAsg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fe7" value="push :sha" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;" edge="1" parent="1" source="fGha" target="fEcr">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="70" />
+              <mxPoint x="1025" y="70" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fe8" value="update tag + instance refresh" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="fGha" target="fAsg">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="640" />
+              <mxPoint x="560" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
