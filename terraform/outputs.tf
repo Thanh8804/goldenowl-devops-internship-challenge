@@ -1,5 +1,4 @@
 output "instance_public_ip" {
-  description = "Public IP of the EC2 instance"
   value       = aws_instance.goldenowl_instance.public_ip
 }
 
@@ -12,3 +11,4 @@ output "ecr_repository_url" {
   description = "URL to push/pull the application image"
   value       = aws_ecr_repository.goldenowl_ecr.repository_url
 }
+
