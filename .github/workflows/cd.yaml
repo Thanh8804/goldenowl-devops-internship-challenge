@@ -21,22 +21,19 @@ env:
 jobs:
   deploy-infra:
     name: Provision Infrastructure
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-24.04
     outputs:
       instance_public_ip: ${{ steps.tf-out.outputs.instance_public_ip }}
       ecr_repository_url: ${{ steps.tf-out.outputs.ecr_repository_url }}
-
     defaults:
       run:
         working-directory: terraform
-
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v4
         with:
           terraform_wrapper: false
 
@@ -64,9 +61,10 @@ jobs:
         run: |
           echo "instance_public_ip=$(terraform output -raw instance_public_ip)" >> "$GITHUB_OUTPUT"
           echo "ecr_repository_url=$(terraform output -raw ecr_repository_url)" >> "$GITHUB_OUTPUT"
-  deploy-app:
-    name: Build and Deploy Application
-    runs-on: ubuntu-latest
+  
+  build-and-scan-image:
+    name: Build and Scan Image with Trivy
+    runs-on: ubuntu-24.04
     needs: deploy-infra
 
     steps:
@@ -74,7 +72,7 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
+      uses: aws-actions/configure-aws-credentials@v6
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -83,15 +81,38 @@ jobs:
     - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v2
 
-    - name: Build and push image
-      env:
-        ECR_URL: ${{ needs.deploy-infra.outputs.ecr_repository_url }}
-        IMAGE_TAG: ${{ github.sha }}
-      run: |
-        docker build -t "$ECR_URL:$IMAGE_TAG" .
-        docker push "$ECR_URL:$IMAGE_TAG"
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-    - name: Deploy to EC2
+    - name: Build image (with layer cache)
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: false
+        tags: ${{ needs.deploy-infra.outputs.ecr_repository_url }}:${{ github.sha }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        load: true
+
+    - name: Scan image with Trivy
+      uses: aquasecurity/trivy-action@v0.36.0
+      with:
+        image-ref: ${{ needs.deploy-infra.outputs.ecr_repository_url }}:${{ github.sha }}
+        format: table
+        exit-code: 1
+        severity: HIGH,CRITICAL
+        ignore-unfixed: true
+
+    - name: Push image
+      run: docker push "${{ needs.deploy-infra.outputs.ecr_repository_url }}:${{ github.sha }}"
+
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-24.04
+    needs: [deploy-infra, build-and-scan-image]
+
+    steps:
+    - name: Deploy application over SSH
       uses: appleboy/ssh-action@v1
       env:
         ECR_URL: ${{ needs.deploy-infra.outputs.ecr_repository_url }}
