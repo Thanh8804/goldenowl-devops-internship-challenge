@@ -84,11 +84,12 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: Build image (with layer cache)
+    - name: Build image with layer
       uses: docker/build-push-action@v6
       with:
         context: .
         push: false
+        pull: true
         tags: ${{ needs.deploy-infra.outputs.ecr_repository_url }}:${{ github.sha }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
