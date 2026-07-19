@@ -111,8 +111,7 @@ jobs:
           fi
 
           if ! command -v aws >/dev/null; then
-            sudo apt-get update -y
-            sudo apt-get install -y awscli
+            sudo snap install aws-cli --classic
           fi
 
           aws ecr get-login-password --region "$AWS_REGION" \
